@@ -55,30 +55,33 @@ def playRound(first):
     if first:
         table.append(deck.pop(0))
         table.append(deck.pop(0))
-    for playa in players_in_round:
-        print("Cards on the table")
-        print(table)
-        print(" ")
-        
-        print(playa)
-        finished = False
-        while (not(finished)):
-            i = input("Dear " + playa[0] + " how much would you like to bid?")
-            if i.upper() == "F":
-                players_in_round.remove(playa)
-                finished = True
-            else:
-                i = int(i)
-                if i > playa[1]:
-                    print("you do not have enough money to bid that much")
-                elif i < current_bid:
-                    print("You must bid more than" + str(current_bid))
-                else:
-                    playa[1] = playa[1]- i
-                    current_bid = i
-                    current_pot = current_pot+ current_bid
+    done = False
+    while(not(done)):
+        for playa in players_in_round:
+            print("Cards on the table")
+            print(table)
+            print(" ")
+            print(playa)
+            finished = False
+            while (not(finished)):
+                i = input("Dear " + playa[0] + " how much would you like to bid?")
+                if i.upper() == "F":
+                    players_in_round.remove(playa)
                     finished = True
-        print("player " + playa[0] + " bid " + str(current_bid) )
+                else:
+                    i = int(i)
+                    if i > playa[1]:
+                        print("you do not have enough money to bid that much")
+                    elif i < current_bid:
+                        print("You must bid more than" + str(current_bid))
+                    else:
+                        playa[1] = playa[1]- i
+                        current_bid = i
+                        current_pot = current_pot+ current_bid
+                        finished = True
+            print("player " + playa[0] + " bid " + str(current_bid) )
+        
+            
     print("Round over!")
     pot = pot + current_pot
         
