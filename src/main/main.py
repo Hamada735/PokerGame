@@ -3,6 +3,9 @@ from cgi import print_arguments
 from dis import dis
 import random
 from re import finditer
+from flask import *
+import json
+
 
 players = []
 small_blind = 10
@@ -184,7 +187,9 @@ def won(name):
             player[1]+= pot
             exit()
             
-
+def printplayers():
+    for player in players:
+        playerToDisplay(player)
 
 if __name__ == '__main__':
     while(True):
@@ -196,10 +201,13 @@ if __name__ == '__main__':
         dealCards()
         blinds()
         playRound(True)
+        printplayers()
         print(pot)
         playRound(False)
+        printplayers()
         print(pot)
         playRound(False)
+        printplayers()
         print(pot)
         whoWon()
         resetPlayers()
