@@ -3,17 +3,16 @@ from cgi import print_arguments
 from dis import dis
 import random
 from re import finditer
-from flask import *
-import json
+
 
 
 players = []
 small_blind = 10
 big_blind = 20
-table = []
+table = ["clubs_ace", "clubs_6"]
 pot = 0
-ranks = ["Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"]
-suits = ["Clubs","Hearts","Diamonds","Spades"]
+ranks = ["ace","2","3","4","5","6","7","8","9","10","jack","queen","king"]
+suits = ["clubs","hearts","diamonds","spades"]
 deck = []
 display = ["Name: ", "Money: ", "Card 1: ", "Card 2: ", "Current bid: "]
 
@@ -21,7 +20,7 @@ display = ["Name: ", "Money: ", "Card 1: ", "Card 2: ", "Current bid: "]
 def resetDeck():
     for rank in ranks:
         for suit in suits:
-            deck.append(rank + " of " + suit)
+            deck.append(suit + "_" + rank )
     random.shuffle(deck)
     
 def addPlayer():
@@ -35,6 +34,7 @@ def addPlayer():
     player.append(buyIn)
     player.append("")
     player.append("")
+    
     player.append(0)
     return player
 
@@ -112,7 +112,6 @@ def playRound(first):
                         if i.upper() == "F":
                             playa[5] = False
                             finished = True
-
                             checkWinner()
                             
                         else:

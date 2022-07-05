@@ -35,11 +35,12 @@
   .column {
     float: left;
     text-align: center;
-    width: 30%;
+    width: 10%;
+    height: 15%;
     background-color: #dfdfdf;
     border-radius: 10px;
-    padding: 30px;
-    height: 7%;
+    padding: 1%;
+    
     margin: 1.6%;
   }
 
